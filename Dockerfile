@@ -1,7 +1,9 @@
 FROM php:8.2-apache
 
-# Install MySQL PDO extension
-RUN docker-php-ext-install pdo pdo_mysql
+# Install SQLite development libraries and MySQL PDO extensions
+RUN apt-get update && apt-get install -y libsqlite3-dev \
+    && docker-php-ext-install pdo pdo_mysql pdo_sqlite \
+    && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache rewrite and headers modules
 RUN a2enmod rewrite headers

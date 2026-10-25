@@ -13,3 +13,4 @@ storage/evidence/*
 .DS_Store
 *.swp
 *.tmp
+*.sqlite
