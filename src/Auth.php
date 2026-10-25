@@ -98,7 +98,7 @@ class Auth {
         $ip = Audit::getClientIp();
         $resetStmt = $db->prepare("
             UPDATE users 
-            SET failed_login_attempts = 0, locked_until = NULL, last_login_at = NOW(), last_login_ip = :ip 
+            SET failed_login_attempts = 0, locked_until = NULL, last_login_at = CURRENT_TIMESTAMP, last_login_ip = :ip 
             WHERE id = :id
         ");
         $resetStmt->execute([':ip' => $ip, ':id' => $user['id']]);

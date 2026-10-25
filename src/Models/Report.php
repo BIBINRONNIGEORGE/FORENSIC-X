@@ -85,7 +85,7 @@ class Report {
                 findings_summary, recommendations, conclusions, generated_by, created_at
             ) VALUES (
                 :code, :incident_id, :title, :executive_summary, 
-                :findings_summary, :recommendations, :conclusions, :generated_by, NOW()
+                :findings_summary, :recommendations, :conclusions, :generated_by, CURRENT_TIMESTAMP
             )
         ");
 

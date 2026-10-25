@@ -85,7 +85,7 @@ class Correlation {
                                     line_number, context_snippet, matched_at
                                 ) VALUES (
                                     :ioc_id, :evd_id, :inc_id, :matched_val,
-                                    :line_no, :snippet, NOW()
+                                    :line_no, :snippet, CURRENT_TIMESTAMP
                                 )
                             ");
                             $insertStmt->execute([

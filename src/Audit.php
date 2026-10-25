@@ -23,7 +23,7 @@ class Audit {
 
             $stmt = $db->prepare("
                 INSERT INTO audit_logs (user_id, username, action, target_type, target_id, ip_address, user_agent, outcome, details, created_at)
-                VALUES (:user_id, :username, :action, :target_type, :target_id, :ip_address, :user_agent, :outcome, :details, NOW())
+                VALUES (:user_id, :username, :action, :target_type, :target_id, :ip_address, :user_agent, :outcome, :details, CURRENT_TIMESTAMP)
             ");
 
             $stmt->execute([

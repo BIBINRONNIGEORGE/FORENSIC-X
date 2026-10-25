@@ -38,7 +38,7 @@ class Finding {
             ) VALUES (
                 :code, :incident_id, :evidence_id, :title, :description,
                 :severity, :category, :supporting_evidence, :analysis_notes,
-                :recommended_action, :created_by, NOW()
+                :recommended_action, :created_by, CURRENT_TIMESTAMP
             )
         ");
 

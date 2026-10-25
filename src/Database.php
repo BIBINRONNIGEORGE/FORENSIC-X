@@ -89,6 +89,13 @@ class Database {
 
         $pdo->exec("PRAGMA foreign_keys = ON;");
 
+        // Register MySQL-compatible CURRENT_TIMESTAMP function for SQLite
+        if (method_exists($pdo, 'sqliteCreateFunction')) {
+            $pdo->sqliteCreateFunction('NOW', function () {
+                return date('Y-m-d H:i:s');
+            });
+        }
+
         if ($needsInit) {
             $schemaFile = BASE_PATH . '/database/sqlite_schema.sql';
             $seedFile   = BASE_PATH . '/database/sqlite_seed.sql';

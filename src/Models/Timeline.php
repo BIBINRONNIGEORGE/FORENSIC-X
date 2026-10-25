@@ -26,7 +26,7 @@ class Timeline {
                 ) VALUES (
                     :incident_id, :event_category, :title, :description,
                     :event_time, :is_source_log, :actor_id,
-                    :ref_table, :ref_id, NOW()
+                    :ref_table, :ref_id, CURRENT_TIMESTAMP
                 )
             ");
 

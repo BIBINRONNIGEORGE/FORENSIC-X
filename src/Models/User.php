@@ -51,7 +51,7 @@ class User {
 
         $stmt = $db->prepare("
             INSERT INTO users (username, email, password_hash, full_name, role, department, is_active, created_at)
-            VALUES (:username, :email, :hash, :name, :role, :dept, 1, NOW())
+            VALUES (:username, :email, :hash, :name, :role, :dept, 1, CURRENT_TIMESTAMP)
         ");
 
         $stmt->execute([

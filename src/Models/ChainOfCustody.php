@@ -25,7 +25,7 @@ class ChainOfCustody {
                     previous_state, new_state, notes, ip_address, created_at
                 ) VALUES (
                     :evidence_id, :event_type, :actor_id, :actor_name, 
-                    :previous_state, :new_state, :notes, :ip_address, NOW()
+                    :previous_state, :new_state, :notes, :ip_address, CURRENT_TIMESTAMP
                 )
             ");
 

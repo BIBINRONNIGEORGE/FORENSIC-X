@@ -166,7 +166,7 @@ class IOC {
                 threat_source, first_seen, last_seen, incident_id, created_by, created_at
             ) VALUES (
                 :code, :type, :value, :desc, :confidence, 
-                :source, :first_seen, :last_seen, :incident_id, :created_by, NOW()
+                :source, :first_seen, :last_seen, :incident_id, :created_by, CURRENT_TIMESTAMP
             )
         ");
 

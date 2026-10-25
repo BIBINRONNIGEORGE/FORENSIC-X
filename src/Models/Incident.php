@@ -118,7 +118,7 @@ class Incident {
                 assigned_to, detected_at, source, affected_system, tags, findings_notes, created_by, created_at
             ) VALUES (
                 :code, :title, :description, :category, :severity, :status, 
-                :assigned_to, :detected_at, :source, :affected_system, :tags, :findings_notes, :created_by, NOW()
+                :assigned_to, :detected_at, :source, :affected_system, :tags, :findings_notes, :created_by, CURRENT_TIMESTAMP
             )
         ");
 

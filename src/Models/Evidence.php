@@ -144,8 +144,8 @@ class Evidence {
             ) VALUES (
                 :code, :name, :description, :incident_id, :original_filename,
                 :storage_filename, :file_size, :mime_type, :file_extension, :sha256_hash,
-                NOW(), 'Verified', 'In-Analysis', :tags, :acquisition_notes,
-                :uploaded_by, NOW()
+                CURRENT_TIMESTAMP, 'Verified', 'In-Analysis', :tags, :acquisition_notes,
+                :uploaded_by, CURRENT_TIMESTAMP
             )
         ");
 
@@ -223,7 +223,7 @@ class Evidence {
 
         // Update database verification status
         $db = Database::getConnection();
-        $stmt = $db->prepare("UPDATE evidence SET last_verified_at = NOW(), last_verified_status = :status WHERE id = :id");
+        $stmt = $db->prepare("UPDATE evidence SET last_verified_at = CURRENT_TIMESTAMP, last_verified_status = :status WHERE id = :id");
         $stmt->execute([':status' => $status, ':id' => $id]);
 
         // Append to Chain of Custody
