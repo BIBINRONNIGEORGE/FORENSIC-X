@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_DATABASE: forensic_x
+      DB_USERNAME: forensic_user
+      DB_PASSWORD: ForensicX_SecurePass2026!
+    depends_on:
+      - db
+    volumes:
+      - ./storage:/var/www/html/storage
+
+  db:
+    image: mariadb:11.8
+    environment:
+      MYSQL_ROOT_PASSWORD: RootSecurePassword2026!
+      MYSQL_DATABASE: forensic_x
+      MYSQL_USER: forensic_user
+      MYSQL_PASSWORD: ForensicX_SecurePass2026!
+    volumes:
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:

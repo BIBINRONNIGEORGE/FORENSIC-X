@@ -5,12 +5,12 @@
  */
 
 return [
-    'driver'    => 'mysql',
-    'host'      => '127.0.0.1',
-    'port'      => 3306,
-    'database'  => 'forensic_x',
-    'username'  => 'forensic_user',
-    'password'  => 'ForensicX_SecurePass2026!',
+    'driver'    => getenv('DB_DRIVER') ?: 'mysql',
+    'host'      => getenv('DB_HOST') ?: '127.0.0.1',
+    'port'      => getenv('DB_PORT') ? (int)getenv('DB_PORT') : 3306,
+    'database'  => getenv('DB_DATABASE') ?: 'forensic_x',
+    'username'  => getenv('DB_USERNAME') ?: 'forensic_user',
+    'password'  => getenv('DB_PASSWORD') !== false ? getenv('DB_PASSWORD') : 'ForensicX_SecurePass2026!',
     'charset'   => 'utf8mb4',
     'collation' => 'utf8mb4_unicode_ci',
     'options'   => [
