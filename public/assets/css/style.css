@@ -1353,6 +1353,33 @@ select.form-control {
     letter-spacing: 0.04em;
 }
 
+/* Sidebar Backdrop for Mobile */
+.sidebar-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(6, 17, 28, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 95;
+    transition: opacity var(--transition-fast);
+}
+
+.sidebar-backdrop.active {
+    display: block;
+}
+
+/* -------------------------------------------------------------------------
+   TWO-COLUMN ROW
+   ------------------------------------------------------------------------- */
+.fx-two-col-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(340px, 1fr);
+    gap: 1.25rem;
+}
+
 /* -------------------------------------------------------------------------
    RESPONSIVE DESIGN (Breakpoints)
    ------------------------------------------------------------------------- */
@@ -1361,6 +1388,9 @@ select.form-control {
         grid-template-columns: repeat(2, 1fr);
     }
     .fx-master-detail {
+        grid-template-columns: 1fr;
+    }
+    .fx-two-col-row {
         grid-template-columns: 1fr;
     }
     .fx-detail-panel {
@@ -1374,13 +1404,17 @@ select.form-control {
 @media (max-width: 900px) {
     .sidebar {
         transform: translateX(-100%);
+        z-index: 999;
     }
     .sidebar.open {
         transform: translateX(0);
-        box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.85);
     }
     .main-wrapper {
         margin-left: 0;
+    }
+    .topbar {
+        padding: 0 1rem;
     }
     .topbar-mobile-toggle {
         display: block;
@@ -1388,11 +1422,103 @@ select.form-control {
     .topbar-search-form {
         display: none;
     }
+    .topbar-crumb-tag {
+        display: none;
+    }
     .page-heading-row {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.85rem;
+    }
+    .page-actions {
+        width: 100%;
+        display: flex;
+        gap: 0.5rem;
+    }
+    .page-actions .btn {
+        flex: 1;
     }
     .kpi-grid {
         grid-template-columns: 1fr;
+    }
+    .content-body {
+        padding: 1.25rem 1rem 2rem 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .content-body {
+        padding: 1rem 0.75rem 2rem 0.75rem;
+        gap: 1rem;
+    }
+    .topbar {
+        height: 60px;
+    }
+    .topbar-profile-badge .topbar-meta-name,
+    .topbar-profile-badge .topbar-meta-role {
+        display: none;
+    }
+    .topbar-profile-badge {
+        padding: 0;
+        background: none;
+        border: none;
+    }
+    .page-title {
+        font-size: 1.35rem;
+    }
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-search-box {
+        width: 100%;
+        min-width: 0;
+    }
+    .filter-bar > div, 
+    .filter-bar > button, 
+    .filter-bar > a {
+        width: 100%;
+        min-width: 0;
+    }
+    .evidence-upload-panel {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.25rem 1rem;
+    }
+    .evidence-upload-icon-well {
+        margin: 0 auto;
+    }
+    .selected-case-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.85rem;
+    }
+    .selected-case-info {
+        width: 100%;
+    }
+    .timeline-rail {
+        padding-left: 1.25rem;
+    }
+    .timeline-marker-dot {
+        left: -1.25rem;
+    }
+    .kpi-card {
+        padding: 1rem;
+    }
+    .card-header {
+        padding: 0.85rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .card-body {
+        padding: 1rem;
+    }
+    .fx-detail-panel {
+        padding: 1rem;
+    }
+    .hash-preview-box {
+        font-size: 0.65rem;
     }
 }

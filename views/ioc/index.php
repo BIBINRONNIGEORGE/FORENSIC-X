@@ -227,7 +227,7 @@ $totalMatches = (int)($stats['matches'] ?? count($matches));
 </div>
 
 <!-- 5. LOG ANALYSIS ROW (Figma Log Analysis Row - Results + Detection Rules) -->
-<div style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(340px, 1fr); gap: 1.25rem;">
+<div class="fx-two-col-row">
     <!-- Log Analysis Results Card -->
     <div class="card">
         <div class="card-header">

@@ -204,18 +204,30 @@ $flash = $flash ?? View::getFlash();
         </div>
     </div>
 
-    <!-- Mobile Drawer Script -->
+    <!-- Mobile Drawer Script & Backdrop -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const toggle = document.getElementById('mobileMenuToggle');
         const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebarBackdrop');
+        
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.toggle('open');
+            if (backdrop) backdrop.classList.toggle('active', isOpen);
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            if (backdrop) backdrop.classList.remove('active');
+        }
+
         if (toggle && sidebar) {
-            toggle.addEventListener('click', () => {
-                sidebar.classList.toggle('open');
-            });
-            document.addEventListener('click', (e) => {
-                if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
-                    sidebar.classList.remove('open');
+            toggle.addEventListener('click', toggleSidebar);
+            if (backdrop) backdrop.addEventListener('click', closeSidebar);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebar();
                 }
             });
         }

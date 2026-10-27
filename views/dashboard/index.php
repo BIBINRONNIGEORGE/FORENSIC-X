@@ -127,7 +127,7 @@ $integrityPct = round(($verifiedEvidence / $totalEvidence) * 100, 1);
 </div>
 
 <!-- 4. ANALYTICS ROW (Figma Analytics Row - Trend + Severity Distribution) -->
-<div style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(340px, 1fr); gap: 1.25rem;">
+<div class="fx-two-col-row">
     <!-- Incident Trend Card -->
     <div class="card">
         <div class="card-header">
@@ -201,7 +201,7 @@ $integrityPct = round(($verifiedEvidence / $totalEvidence) * 100, 1);
 </div>
 
 <!-- 5. RECENT ACTIVITY ROW (Figma Recent Incidents + Investigation Activity) -->
-<div style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(340px, 1fr); gap: 1.25rem;">
+<div class="fx-two-col-row">
     <!-- Recent Incidents Table Card -->
     <div class="card">
         <div class="card-header">
