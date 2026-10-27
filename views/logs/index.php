@@ -3,6 +3,18 @@
  * FORENSIC-X Interactive Log Analysis Engine View
  */
 ?>
+<div class="page-heading-row" style="margin-bottom: 0.5rem;">
+    <div class="page-heading-copy">
+        <h1 class="page-title">Log Analysis Engine</h1>
+        <div class="page-subtitle">Rule-based threat pattern triage and suspicious forensic log inspection.</div>
+    </div>
+    <div class="page-actions">
+        <a href="/ioc" class="btn btn-secondary">
+            IOC Repository &rarr;
+        </a>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
         <div class="card-title">

@@ -150,11 +150,13 @@ if ($uri === '/incidents') {
         'search'   => trim($_GET['search'] ?? ''),
     ];
     $incidents = Incident::getAll($filters, 100);
+    $stats = Incident::getStats();
 
     View::render('incidents/index', [
-        'pageTitle' => 'Incidents Inventory',
+        'pageTitle' => 'Incident Management',
         'incidents' => $incidents,
         'filters'   => $filters,
+        'stats'     => $stats,
     ]);
     exit;
 }
@@ -274,12 +276,14 @@ if ($uri === '/evidence') {
     ];
     $evidence = Evidence::getAll($filters, 100);
     $stats    = Evidence::getStats();
+    $firstCustody = !empty($evidence) ? ChainOfCustody::getByEvidenceId((int)$evidence[0]['id']) : [];
 
     View::render('evidence/index', [
-        'pageTitle' => 'Digital Evidence Vault',
-        'evidence'  => $evidence,
-        'stats'     => $stats,
-        'filters'   => $filters,
+        'pageTitle'    => 'Evidence Vault',
+        'evidence'     => $evidence,
+        'stats'        => $stats,
+        'filters'      => $filters,
+        'firstCustody' => $firstCustody,
     ]);
     exit;
 }
@@ -403,10 +407,19 @@ if ($uri === '/ioc') {
         'search'     => trim($_GET['search'] ?? ''),
     ];
     $iocs = IOC::getAll($filters, 100);
+    $stats = IOC::getStats();
+    $matches = Correlation::getAllMatches(10);
+    $db = Database::getConnection();
+    $findings = $db->query("SELECT f.*, i.incident_code FROM analysis_findings f LEFT JOIN incidents i ON f.incident_id = i.id ORDER BY f.created_at DESC LIMIT 5")->fetchAll();
+    $logsCount = (int)$db->query("SELECT COUNT(*) FROM evidence WHERE mime_type IN ('text/plain', 'application/json', 'text/csv') OR file_extension IN ('log', 'txt', 'json', 'csv') OR original_filename LIKE '%.log'")->fetchColumn();
 
     View::render('ioc/index', [
-        'pageTitle' => 'IOC Repository',
+        'pageTitle' => 'IOC & Log Analysis',
         'iocs'      => $iocs,
+        'stats'     => $stats,
+        'matches'   => $matches,
+        'findings'  => $findings,
+        'logsCount' => max(1, $logsCount),
         'filters'   => $filters,
     ]);
     exit;
@@ -542,12 +555,20 @@ if ($uri === '/timeline') {
     ];
     $events = Timeline::getAll($filters, 100);
     $incidents = Incident::getAll([], 100);
+    
+    $selectedIncident = null;
+    if (!empty($filters['incident_id'])) {
+        $selectedIncident = Incident::getById((int)$filters['incident_id']);
+    } elseif (!empty($incidents)) {
+        $selectedIncident = $incidents[0];
+    }
 
     View::render('timeline/index', [
-        'pageTitle' => 'Investigation Timeline',
-        'events'    => $events,
-        'incidents' => $incidents,
-        'filters'   => $filters,
+        'pageTitle'        => 'Investigation Timeline',
+        'events'           => $events,
+        'incidents'        => $incidents,
+        'selectedIncident' => $selectedIncident,
+        'filters'          => $filters,
     ]);
     exit;
 }
@@ -557,10 +578,26 @@ if ($uri === '/timeline') {
 // -----------------------------------------------------------------------------
 
 if ($uri === '/reports') {
+    $search = trim($_GET['search'] ?? '');
     $reports = Report::getAll();
+    if (!empty($search)) {
+        $reports = array_filter($reports, function($r) use ($search) {
+            return stripos($r['title'], $search) !== false 
+                || stripos($r['report_code'], $search) !== false 
+                || stripos($r['incident_code'] ?? '', $search) !== false;
+        });
+    }
+
+    $db = Database::getConnection();
+    $recentAudits = $db->query("SELECT * FROM audit_logs ORDER BY created_at DESC LIMIT 6")->fetchAll();
+    $auditCount = (int)$db->query("SELECT COUNT(*) FROM audit_logs")->fetchColumn();
+
     View::render('reports/index', [
-        'pageTitle' => 'Investigation Reports',
-        'reports'   => $reports,
+        'pageTitle'    => 'Reports & Audit Center',
+        'reports'      => $reports,
+        'recentAudits' => $recentAudits,
+        'auditCount'   => $auditCount,
+        'search'       => $search,
     ]);
     exit;
 }

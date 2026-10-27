@@ -3,11 +3,23 @@
  * FORENSIC-X Security & Audit Center View
  */
 ?>
+<div class="page-heading-row" style="margin-bottom: 0.5rem;">
+    <div class="page-heading-copy">
+        <h1 class="page-title">Security &amp; Audit Trail</h1>
+        <div class="page-subtitle">Append-only tamper-evident event log and operator telemetry.</div>
+    </div>
+    <div class="page-actions">
+        <a href="/reports" class="btn btn-secondary">
+            Reports Library &rarr;
+        </a>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
         <div class="card-title">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Security & Audit Trail (Append-Only)
+            Audit Telemetry Log
         </div>
         <div style="font-size: 0.72rem; color: var(--cyan-primary);">
             Tamper-Evident System Telemetry
